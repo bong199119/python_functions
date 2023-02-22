@@ -24,9 +24,10 @@ def sec_to_hms(sec):
     hms = h_str +':'+m_str+':'+s_str
     return hms
 
+fps = 30
 fram_gap = 30
 def frame_to_hms(idx):
-    sec = idx * (fram_gap/60)
+    sec = idx * (fram_gap/fps)
     sec = round(sec)
 
     h = int(sec//3600)
