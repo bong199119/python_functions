@@ -132,3 +132,17 @@ def packaging_hms_list(hms_list):
             before_sec = sec_ele
 
     return hms_list_packaged
+
+
+# dataFrame lambda apply
+import pandas as pd
+import os
+train = pd.read_csv('D:\project\python_functions\data\train.csv')
+
+def change_videopath(path_origin):
+  file_name = path_origin.split('/')[-1]
+  path_trainfolder = 'D:\project\python_functions\data\train'
+  path_new = os.path.join(path_trainfolder, file_name)
+  return path_new
+
+train['video_path'] = train.apply(lambda x: change_videopath(x['video_path']),axis=1)
