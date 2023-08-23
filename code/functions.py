@@ -146,3 +146,40 @@ def change_videopath(path_origin):
   return path_new
 
 train['video_path'] = train.apply(lambda x: change_videopath(x['video_path']),axis=1)
+
+####
+import numpy as np
+'''
+list_ : list for split
+train_size : 0.5 =< train_size < 1
+'''
+####
+def make_train_test_list(list_, train_size):
+    list_train = []
+    list_test = []
+
+    if train_size >= 1 or train_size < 0.5:
+        return 
+
+    len_list = len(list_)
+    len_train = int(len_list*train_size)
+    len_test = len_list - len_train
+
+    test_indices = np.random.choice(range(0, len_list), len_test, replace=False)
+    train_indices = []
+    for index_ in range(len_list):
+        if index_ not in test_indices:
+            train_indices.append(index_)
+
+    test_indices_array = np.array(test_indices)
+    train_indices_array = np.array(train_indices)
+
+    for test_index in test_indices_array:
+        test_ele = list_[test_index]
+        list_test.append(test_ele)
+
+    for train_index in train_indices_array:
+        train_ele = list_[train_index]
+        list_train.append(train_ele)
+
+    return list_train, list_test
