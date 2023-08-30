@@ -183,3 +183,27 @@ def make_train_test_list(list_, train_size):
         list_train.append(train_ele)
 
     return list_train, list_test
+
+
+####
+import numpy as np
+'''
+list_pred : prediction list made by 0 or 1
+list_gt : gt list made by 0 or 1 
+
+list_ : list made by 0 or 1 if mismatch pred, gt in same frame 1, elif match 0
+
+0 : no detection
+1 : detection 
+'''
+####
+def list_mismatch(list_pred, list_gt):
+    array_pred = np.array(list_pred)
+    array_gt = np.array(list_gt)
+    
+    array_sum = array_pred + array_gt
+    list_sum = list(array_sum)
+    
+    list_ = [ele if ele == 1 else 0 for ele in list_sum]
+    
+    return list_
