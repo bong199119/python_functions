@@ -133,6 +133,22 @@ def packaging_hms_list(hms_list):
 
     return hms_list_packaged
 
+'''
+list_hmspkg : ['hms ~ hms', ... ,'hms ~ hms']
+list_secpkg : ['sec ~ sec', ... ,'sec ~ sec']
+'''
+def hmspkg_to_secpkg(list_hmspkg):
+    list_secpkg = []
+    for hmspck in list_hmspkg:
+        first_hms = hmspck.split('~')[0][:-1]
+        second_hms = hmspck.split('~')[1][1:]
+        
+        first_sec = hms_to_sec(first_hms)
+        second_sec = hms_to_sec(second_hms)
+        
+        list_secpkg.append(str(first_sec) + ' ~ ' + str(second_sec))
+    
+    return list_secpkg   
 
 # dataFrame lambda apply
 import pandas as pd
@@ -207,6 +223,40 @@ def list_mismatch(list_pred, list_gt):
     list_ = [ele if ele == 1 else 0 for ele in list_sum]
     
     return list_
+
+def list_match(list_pred, list_gt):
+    array_pred = np.array(list_pred)
+    array_gt = np.array(list_gt)
+    
+    array_sum = array_pred + array_gt
+    list_sum = list(array_sum)
+    
+    list_ = [1 if ele != 1 else 0 for ele in list_sum]
+    
+    return list_
+
+def list_appear_total(list_pred, list_gt):
+    array_pred = np.array(list_pred)
+    array_gt = np.array(list_gt)
+    
+    list_sum = list(array_gt)
+    
+    list_ = list_sum
+    
+    return list_
+
+def list_appear(list_pred, list_gt):
+    array_pred = np.array(list_pred)
+    array_gt = np.array(list_gt)
+    
+    array_sum = array_pred + array_gt
+    list_sum = list(array_sum)
+    
+    list_ = [1 if ele == 2 else 0 for ele in list_sum]
+    
+    return list_
+
+
 
 
 ######################################################
