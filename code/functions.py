@@ -256,6 +256,18 @@ def list_appear(list_pred, list_gt):
     
     return list_
 
+# bubble sort
+def sort_by_imgnamenumsize(list_, sepsign, indexofnum):
+    for i in range(len(list_) - 1, 0, -1):
+        for j in range(i):
+            if list_[j].split(sepsign)[indexofnum][:-4] > list_[j + 1].split(sepsign)[indexofnum][:-4]:
+                list_[j], list_[j + 1] = list_[j + 1], list_[j]
+
+    return list_
+
+def make_08d(idx):
+    idx_08d = (8-len(str(idx)))*'0'+str(idx)
+    return idx_08d
 
 ######################################################
 ###########  other library or usefull code ###########
