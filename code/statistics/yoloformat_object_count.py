@@ -1,6 +1,6 @@
 import os
 
-path = r'Z:\preprocessing\dataset'
+path = r'Z:\preprocessing\model_test\dataset'
 list_folder = [
     # 'model_test_1stdataset',
     # 'model_test_2nddataset',
