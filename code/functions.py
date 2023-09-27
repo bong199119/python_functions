@@ -150,6 +150,25 @@ def hmspkg_to_secpkg(list_hmspkg):
     
     return list_secpkg   
 
+def hms_to_hmsWC(hms):
+    h = hms.split(':')[0]
+    m = hms.split(':')[1]
+    s = hms.split(':')[2]
+
+    hmswc = h+m+s
+    return hmswc
+
+def hms_to_duetime(hmspck):
+    first_hms = hmspck.split('~')[0][:-1]
+    second_hms = hmspck.split('~')[1][1:]
+    
+    first_sec = hms_to_sec(first_hms)
+    second_sec = hms_to_sec(second_hms)
+
+    duetime = second_sec - first_sec
+    
+    return duetime   
+
 # dataFrame lambda apply
 import pandas as pd
 import os
