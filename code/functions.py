@@ -333,4 +333,12 @@ for folder_ in list_folder:
                     shutil.copy(path_folder_png, to_path_folder_png)
                     shutil.copy(path_xmlfolder_folder_xml, to_path_folder_xml)
 
-                
+
+import os
+import pandas as pd
+
+path = ''
+csv_ = pd.read_csv(path)
+print(csv_)
+csv_ = csv_['SUM'].apply(lambda x: 1 if x > 30 else 0)
+print(csv_)
